@@ -35,5 +35,51 @@ public class consultasInventario extends Conexion{
                 System.err.println("Error, "+ex);
             }
         }
-    } 
+    }
+    public boolean eliminar(int id){
+        Connection conexion = getConnection();
+        
+        try {
+            ps = conexion.prepareStatement("delete from producto where idProducto=?");
+            ps.setInt(1, id);
+            int resultado = ps.executeUpdate();
+            
+            return resultado>0;
+        } catch (SQLException ex) {
+            System.err.println("Error, "+ex);
+            return false;
+        }finally{
+            try {
+                conexion.close();
+            } catch (SQLException ex) {
+                System.err.println("Error, "+ex);
+            }
+        }   
+    }
+    
+    public boolean actualizar(Producto producto){
+        Connection conexion = getConnection();
+        
+        try {
+            ps = conexion.prepareStatement("update producto set precio=?,existencia=?,nombre=?,unidad=?,idCategoria=? where idProducto=?");
+            ps.setDouble(1,producto.getPrecio());
+            ps.setInt(2,producto.getExistencia());
+            ps.setString(3, producto.getNombre());
+            ps.setString(4, producto.getUnidad());
+            ps.setInt(5, producto.getIdCategoria());
+            ps.setInt(6, producto.getIdProducto());
+            int resultado = ps.executeUpdate();
+            
+            return resultado>0;
+        } catch (SQLException ex) {
+            System.err.println("Error, "+ex);
+            return false;
+        }finally{
+            try {
+                conexion.close();
+            } catch (SQLException ex) {
+                System.err.println("Error, "+ex);
+            }
+        }   
+    }
 }
