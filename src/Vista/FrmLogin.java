@@ -105,7 +105,7 @@ public class FrmLogin extends javax.swing.JFrame {
         botonSalir.setForeground(new java.awt.Color(255, 255, 255));
         botonSalir.setText("Salir");
 
-        botonIngresar.setBackground(new java.awt.Color(121, 241, 124));
+        botonIngresar.setBackground(new java.awt.Color(103, 169, 105));
         botonIngresar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         botonIngresar.setForeground(new java.awt.Color(255, 255, 255));
         botonIngresar.setText("Ingresar");
