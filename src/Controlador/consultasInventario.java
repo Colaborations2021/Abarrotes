@@ -7,9 +7,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.DefaultComboBoxModel;
 
 public class consultasInventario extends Conexion{
     PreparedStatement ps;
+    ResultSet rs;
+    public DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
     
     public boolean insertar(Producto producto){
         Connection conexion = getConnection();
@@ -81,5 +84,35 @@ public class consultasInventario extends Conexion{
                 System.err.println("Error, "+ex);
             }
         }   
+    }
+    
+    public void llenarComboBox(){
+        Producto producto = new Producto();
+        ps =null;
+        rs = null;
+        Connection con = getConnection();
+        try {
+            ps = con.prepareStatement("select * from producto");
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                producto.setIdProducto(rs.getInt("idProducto"));
+                producto.setNombre(rs.getString("nombre"));
+                producto.setExistencia(rs.getInt("existencia"));
+                producto.setUnidad(rs.getString("unidad"));
+                producto.setPrecio(rs.getDouble("precio"));
+                producto.setIdCategoria(rs.getInt("idCategoria"));
+                Vista.FrmInventario.modeloCombo.addElement(producto);
+                producto = new Producto();
+            }            
+        } catch (SQLException ex) {
+            System.err.println("Error, "+ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.err.println("Error, "+ex);
+            }
+        }
     }
 }

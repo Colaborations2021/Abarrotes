@@ -4,12 +4,13 @@ import Modelo.Producto;
 import javax.swing.JOptionPane;
 
 public class controladorInventario {
-
+    public static consultasInventario consultasInv = new consultasInventario();
+    
     public static consultasInventario consulta = new consultasInventario();
     public static void salir() {
         System.exit(0);
     }
-
+    
     public static void agregar() {
         Producto producto = new Producto();
         producto.setNombre(Vista.FrmInventario.getTxtArticulo().getText());
@@ -19,6 +20,8 @@ public class controladorInventario {
         producto.setIdCategoria(Integer.parseInt(Vista.FrmInventario.getTextoCategoria().getText()));
 
         if (consulta.insertar(producto)) {
+            consultasInv.modeloCombo.removeAllElements();
+            consultasInv.llenarComboBox();
             JOptionPane.showMessageDialog(null, "Registro insertado correctamente");
             //limpiar();
         } else {
