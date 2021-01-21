@@ -7,8 +7,8 @@ package Modelo;
 
 /**
  *
- * @author Axel
+ * @author lasca
  */
-public class Usuario {
+public class consultasUsuario {
     
 }
