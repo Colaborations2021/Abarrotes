@@ -1,9 +1,5 @@
 package Vista;
 
-import Modelo.Usuario;
-import Modelo.cifrarContraseña;
-import Modelo.consultasUsuario;
-import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -88,12 +84,18 @@ public class FrmLogin extends javax.swing.JFrame {
 
         cajaUsuarios.setBackground(new java.awt.Color(114, 121, 176));
         cajaUsuarios.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cajaUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         cajaUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Trabajador" }));
 
         botonSalir.setBackground(new java.awt.Color(250, 48, 42));
         botonSalir.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         botonSalir.setForeground(new java.awt.Color(255, 255, 255));
         botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
 
         botonIngresar.setBackground(new java.awt.Color(103, 169, 105));
         botonIngresar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -160,6 +162,10 @@ public class FrmLogin extends javax.swing.JFrame {
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
         Controlador.controladorFrLogin.validarUsuario();
     }//GEN-LAST:event_botonIngresarActionPerformed
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        Controlador.controladorPrincipal.Salir();
+    }//GEN-LAST:event_botonSalirActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
